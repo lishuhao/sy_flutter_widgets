@@ -32,7 +32,8 @@ class _LoadMoreListViewState extends State<LoadMoreListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('')), body: _buildBody());
+    return Scaffold(
+        appBar: AppBar(title: Text('Github search go')), body: _buildBody());
   }
 
   Widget _buildBody() {

@@ -2,7 +2,7 @@ name: sy_flutter_widgets
 description: flutter 组件库
 version: 0.0.1
 author: lishuhao <gg2366493058@gmail.com>
-homepage:
+homepage: https://github.com/lishuhao/sy_flutter_widgets
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"

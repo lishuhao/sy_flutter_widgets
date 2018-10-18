@@ -11,14 +11,10 @@ class _RateDemoState extends State<RateDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Rate 评分')),
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              SyRate(
-                value: 3,
-                onTap: (v) {},
-              )
-            ],
+        body: Center(
+          child: SyRate(
+            value: 3,
+            onTap: (v) {},
           ),
         ));
   }
