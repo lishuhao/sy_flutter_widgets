@@ -1,4 +1,5 @@
 import 'package:example/home.dart';
+import 'package:example/image_upload.dart';
 import 'package:example/load_more_gridview.dart';
 import 'package:example/load_more_listview.dart';
 import 'package:example/rate.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/rate': (context) => RateDemo(),
         '/listview': (context) => LoadMoreListView(),
         '/gridview': (context) => LoadMoreGridView(),
+        '/image_uploader': (context) => ImageUpload()
       },
     );
   }

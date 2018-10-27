@@ -16,7 +16,6 @@ class _LoadMoreListViewState extends State<LoadMoreListView> {
 
   Future<bool> _getDataList(int page) async {
     List<GithubRepo> records = await getRepos(page);
-    print(records);
     setState(() {
       _dataList.addAll(records);
       _loading = false;

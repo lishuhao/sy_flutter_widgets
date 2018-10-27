@@ -44,10 +44,16 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.pushNamed(context, '/gridview');
             },
           ),
+          SyCell(
+            title: '图片墙',
+            onTap: () {
+              Navigator.pushNamed(context, '/image_uploader');
+            },
+          ),
           Theme(
             data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
             child: SyCell(
-              title: '地址选择器',
+              title: '省市区地址选择器',
               onTap: () async {
                 final result = await Navigator.push(
                     context,
