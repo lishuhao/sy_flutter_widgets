@@ -7,8 +7,9 @@ import '_area_data.dart';
 
 class SyArea extends StatefulWidget {
   final Widget title;
+  final String initialValue; //第三级area_code
 
-  const SyArea({Key key, this.title}) : super(key: key);
+  const SyArea({Key key, this.title, this.initialValue}) : super(key: key);
 
   @override
   _SyAreaState createState() => _SyAreaState();
@@ -25,6 +26,20 @@ class _SyAreaState extends State<SyArea> {
   String _selectedProvinceCode = '110000';
   String _selectedCityCode = '110100';
   String _selectedCountyCode = '110101';
+
+  void _setInitCode() {
+    if (widget.initialValue == null) {
+      return;
+    }
+    if (_areaData['county_list'][widget.initialValue] == null) {
+      return;
+    }
+    setState(() {
+      _selectedProvinceCode = widget.initialValue.substring(0, 2) + '0000';
+      _selectedCityCode = widget.initialValue.substring(0, 4) + '00';
+      _selectedCountyCode = widget.initialValue;
+    });
+  }
 
   Map<String, dynamic> _getCities(String areaCode) {
     Map<String, dynamic> cities = new Map();
@@ -51,6 +66,7 @@ class _SyAreaState extends State<SyArea> {
   @override
   void initState() {
     super.initState();
+    _setInitCode();
     _provinces = _areaData['province_list'];
     _cities = _getCities(_selectedProvinceCode);
     _counties = _getCounties(_selectedCityCode);

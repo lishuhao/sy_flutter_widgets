@@ -12,23 +12,34 @@ class _ImageUploadState extends State<ImageUpload> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('图片墙')),
-        body: Container(
-          child: SyImageWall(
-              reorderable: true,
-              images: [
-                'http://qn.isanye.cn/avatar.png',
-                'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-                'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
-              ],
-              onChange: (images) {
-                print(images);
-              },
-              onUpload: () async {
-                await Future.delayed(Duration(seconds: 1));
-                return 'http://qn.isanye.cn/avatar.png?ts=' +
-                    DateTime.now().toIso8601String();
-              }),
-        ));
+      appBar: AppBar(title: Text('图片墙')),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('长按可排序'),
+          ),
+          Expanded(
+              child: Container(
+            child: SyImageWall(
+                reorderable: true,
+                images: [
+                  'http://qn.isanye.cn/avatar.png',
+                  'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+                  'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+                ],
+                onChange: (images) {
+                  print(images);
+                },
+                onUpload: () async {
+                  await Future.delayed(Duration(seconds: 1));
+                  return 'http://qn.isanye.cn/avatar.png?ts=' +
+                      DateTime.now().toIso8601String();
+                }),
+          )),
+        ],
+      ),
+    );
   }
 }
