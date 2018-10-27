@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sy_flutter_widgets/src/colors.dart';
 
 typedef int CallBack(int);
 
 //星级评分
 class SyRate extends StatefulWidget {
-  final int total;
-  final int value;
-  final bool readOnly;
-  final Color color; //选中的颜色
-  final Color unselectedColor; //未选中的颜色
+  final int total; //总数
+  final int value; //当前数
+  final IconData icon;
   final double iconSize;
   final CallBack onTap;
 
@@ -17,15 +14,11 @@ class SyRate extends StatefulWidget {
       {Key key,
       this.onTap,
       this.total = 5,
-      this.value = 5,
-      this.readOnly = false,
-      this.color = Colors.red,
-      this.unselectedColor = SyColor.subtitle,
-      this.iconSize = 24.0})
+      this.value = 3,
+      this.iconSize = 24.0,
+      this.icon})
       : assert(total > 1 && value >= 1,
             'total 或 value 不能小于1'), // 确保total>1 && value>=1
-        assert((readOnly == true) || (readOnly == false && onTap != null),
-            '如果readOnly为false，onTap 不能为null'),
         super(key: key);
 
   @override
@@ -51,25 +44,29 @@ class _SyRateState extends State<SyRate> {
   }
 
   List<Widget> _buildChildren() {
+    ThemeData theme = Theme.of(context);
+
     List<Widget> widgets = [];
     for (int i = 1; i <= widget.total; i++) {
-      Widget item = InkWell(
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
+      Widget item = Container(
+        margin: EdgeInsets.only(right: widget.iconSize / 4),
+        child: InkWell(
             child: Icon(
-              _starNum >= i ? Icons.star : Icons.star_border,
-              color: _starNum >= i ? widget.color : widget.unselectedColor,
+              widget.icon ?? Icons.star,
+              color: _starNum >= i
+                  ? theme.accentColor
+                  : theme.disabledColor.withOpacity(0.2),
               size: widget.iconSize,
             ),
-          ),
-          onTap: widget.readOnly
-              ? null
-              : () {
-                  setState(() {
-                    _starNum = i;
-                  });
-                  widget.onTap(_starNum);
-                });
+            onTap: widget.onTap == null
+                ? null
+                : () {
+                    setState(() {
+                      _starNum = i;
+                    });
+                    widget.onTap(_starNum);
+                  }),
+      );
 
       widgets.add(item);
     }

@@ -12,10 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Demo',
-      theme: new ThemeData(
-          primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Color.fromARGB(255, 243, 243, 243)),
       initialRoute: '/',
+      debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
         '/stepper': (context) => MyStepper(),

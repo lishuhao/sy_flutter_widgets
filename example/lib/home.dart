@@ -44,6 +44,25 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.pushNamed(context, '/gridview');
             },
           ),
+          SyCell(
+            title: '地址选择器',
+            onTap: () async {
+              final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return Theme(
+                          data: Theme.of(context).copyWith(
+                              scaffoldBackgroundColor: Colors.grey[100]),
+                          child: SyArea(
+                            title: Text('请选择地址'),
+                          ),
+                        );
+                      },
+                      fullscreenDialog: true));
+              print(result == null ? null : result.toJson());
+            },
+          ),
         ],
       ),
     );
