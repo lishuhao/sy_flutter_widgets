@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sy_flutter_widgets/src/colors.dart';
 
 class SyCell extends StatelessWidget {
   final Widget icon;
@@ -16,13 +15,14 @@ class SyCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return new InkWell(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border(bottom: BorderSide(color: SyColor.divider))),
+            border: Border(bottom: BorderSide(color: theme.dividerColor))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -42,7 +42,7 @@ class SyCell extends StatelessWidget {
                 ? Container()
                 : Icon(
                     Icons.navigate_next,
-                    color: SyColor.subtitle,
+                    color: theme.disabledColor,
                   )
           ],
         ),

@@ -54,7 +54,6 @@ class _SyListViewWithLoadMoreState extends State<SyListViewWithLoadMore> {
           setState(() {
             _hasMore = false;
           });
-          //syShowToast( '没有更多数据');
           print('没有更多数据');
         }
       }

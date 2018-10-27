@@ -55,7 +55,6 @@ class _SyGridViewWithLoadMoreState extends State<SyGridViewWithLoadMore> {
           setState(() {
             _hasMore = false;
           });
-          //syShowToast( '没有更多数据');
           print('没有更多数据');
         }
       }

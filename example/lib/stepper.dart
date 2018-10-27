@@ -18,9 +18,27 @@ class _MyStepperState extends State<MyStepper> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Expanded(child: Text('数量')),
+                  Expanded(child: Text('基础')),
                   SyStepper(
                     onChange: (v) {},
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(child: Text('高级')),
+                  SyStepper(
+                    value: 2,
+                    step: 2,
+                    onChange: (v) {},
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(child: Text('禁用')),
+                  SyStepper(
+                    value: 5,
                   )
                 ],
               )
