@@ -69,9 +69,7 @@ class _SyAddressEditState extends State<SyAddressEdit> {
         controller: _areaController,
         enabled: false,
         decoration: InputDecoration(
-            labelText: '地区',
-            hintText: '选择省/市/区',
-            hintStyle: TextStyle(fontSize: 12.0)),
+            labelText: '地区', hintStyle: TextStyle(fontSize: 12.0)),
       ),
       onTap: () async {
         SyAreaModel result =
@@ -106,16 +104,30 @@ class _SyAddressEditState extends State<SyAddressEdit> {
       },
     );
 
+    Widget defaultAddress = new Container(
+      padding: EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text('设为默认收货地址'),
+          Switch(
+              value: _address.isDefault,
+              onChanged: (val) {
+                setState(() {
+                  _address.isDefault = val;
+                });
+              })
+        ],
+      ),
+    );
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(widget.address == null ? '新建收货地址' : '编辑收货地址'),
         actions: <Widget>[
-          FlatButton(
-            child: Text(
-              '保存',
-              style: TextStyle(color: theme.cardColor),
-            ),
+          IconButton(
+            icon: Icon(Icons.check),
             onPressed: _onSubmit,
           )
         ],
@@ -130,6 +142,7 @@ class _SyAddressEditState extends State<SyAddressEdit> {
               phoneField,
               areaField,
               detailField,
+              defaultAddress,
             ],
           ),
         ),
@@ -147,8 +160,8 @@ class _SyAddressEditState extends State<SyAddressEdit> {
       return;
     }
     _formKey.currentState.save();
-    print(_address.toJson());
     widget.onSave(_address);
+    Navigator.pop(context);
   }
 
   String _validPhone(String phone) {

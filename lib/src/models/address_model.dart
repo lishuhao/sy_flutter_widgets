@@ -29,7 +29,7 @@ class SyAddressModel {
         'area_code': areaCode,
       };
 
-  String get area => '$province/$city/$county';
+  String get area => '$province $city $county ';
 
   String get completeAddress => area + ' ' + detailAddress;
 }

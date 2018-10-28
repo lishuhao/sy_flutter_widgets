@@ -7,14 +7,24 @@ class AddressListPage extends StatefulWidget {
 }
 
 class _AddressListPageState extends State<AddressListPage> {
-  SyAddressModel _address = SyAddressModel(
-      name: '李树浩',
-      phone: '18323244424',
-      province: '北京市',
-      city: '北京城区',
-      county: '丰台区',
-      detailAddress: '洋桥北里128号楼',
-      isDefault: true);
+  List<SyAddressModel> _addressList = [
+    SyAddressModel(
+        name: '张三',
+        phone: '18323244424',
+        province: '北京市',
+        city: '北京城区',
+        county: '丰台区',
+        detailAddress: '洋桥北里128号楼 ',
+        isDefault: true),
+    SyAddressModel(
+        name: '李四',
+        phone: '18323244424',
+        province: '北京市',
+        city: '北京城区',
+        county: '丰台区',
+        detailAddress: '洋桥北里128号楼',
+        isDefault: false)
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -39,21 +49,21 @@ class _AddressListPageState extends State<AddressListPage> {
         backgroundColor: Colors.grey[200],
         body: ListView(
           padding: EdgeInsets.all(8.0),
-          children: <Widget>[
-            SyAddressItem(
-              address: _address,
+          children: _addressList.map((item) {
+            return SyAddressItem(
+              address: item,
               onEdit: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return SyAddressEdit(
-                    address: _address,
+                    address: item,
                     onSave: (address) {
                       print(address.toJson());
                     },
                   );
                 }));
               },
-            )
-          ],
+            );
+          }).toList(),
         ));
   }
 }
