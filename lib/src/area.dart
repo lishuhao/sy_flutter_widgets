@@ -8,9 +8,17 @@ import 'models/area_model.dart';
 
 class SyArea extends StatefulWidget {
   final Widget title;
-  final String initialValue; //第三级area_code
+  final String initProvince;
+  final String initCity;
+  final String initCounty;
 
-  const SyArea({Key key, this.title, this.initialValue}) : super(key: key);
+  const SyArea(
+      {Key key,
+      this.title,
+      this.initProvince = '',
+      this.initCity = '',
+      this.initCounty = ''})
+      : super(key: key);
 
   @override
   _SyAreaState createState() => _SyAreaState();
@@ -18,59 +26,54 @@ class SyArea extends StatefulWidget {
 
 class _SyAreaState extends State<SyArea> {
   final _areaData = json.decode(areaData);
-  Map<String, dynamic> _provinces;
-
-  Map<String, dynamic> _cities;
-  Map<String, dynamic> _counties;
+  List<String> _provinces;
+  List<String> _cities;
+  List<String> _counties;
 
   //选中的
-  String _selectedProvinceCode = '110000';
-  String _selectedCityCode = '110100';
-  String _selectedCountyCode = '110101';
+  String _selectedProvince;
+  String _selectedCity;
+  String _selectedCounty;
 
-  void _setInitCode() {
-    if (widget.initialValue == null) {
-      return;
+  List<String> _getCities(String province) {
+    if (_areaData[province] == null) {
+      return new List();
     }
-    if (_areaData['county_list'][widget.initialValue] == null) {
-      return;
-    }
-    setState(() {
-      _selectedProvinceCode = widget.initialValue.substring(0, 2) + '0000';
-      _selectedCityCode = widget.initialValue.substring(0, 4) + '00';
-      _selectedCountyCode = widget.initialValue;
-    });
+    return (_areaData[province] as Map).keys.toList();
   }
 
-  Map<String, dynamic> _getCities(String areaCode) {
-    Map<String, dynamic> cities = new Map();
-    (_areaData['city_list'] as Map<String, dynamic>)
-        .forEach((String key, dynamic val) {
-      if (areaCode.substring(0, 2) == key.substring(0, 2)) {
-        cities[key] = val;
-      }
-    });
-    return cities;
-  }
-
-  Map<String, dynamic> _getCounties(String areaCode) {
-    Map<String, dynamic> counties = new Map();
-    (_areaData['county_list'] as Map<String, dynamic>)
-        .forEach((String key, dynamic val) {
-      if (areaCode.substring(0, 4) == key.substring(0, 4)) {
-        counties[key] = val;
-      }
-    });
-    return counties;
+  List<String> _getCounties(String province, String city) {
+    if (_areaData[province] == null || _areaData[province][city] == null) {
+      return new List();
+    }
+    return (_areaData[province][city] as List)
+        .map((item) => item.toString())
+        .toList();
   }
 
   @override
   void initState() {
     super.initState();
-    _setInitCode();
-    _provinces = _areaData['province_list'];
-    _cities = _getCities(_selectedProvinceCode);
-    _counties = _getCounties(_selectedCityCode);
+    _provinces = _areaData.keys.toList();
+
+    List<String> cities = _getCities(widget.initProvince);
+    List<String> counties = _getCounties(widget.initProvince, widget.initCity);
+    if (!cities.contains(widget.initCity) ||
+        (counties.length > 0 && !counties.contains(widget.initCounty))) {
+      //没找到初始值
+      _selectedProvince = _provinces.first;
+      _cities = _getCities(_selectedProvince);
+      _selectedCity = _cities.first;
+      _counties = _getCounties(_selectedProvince, _selectedCity);
+      _selectedCounty = _counties[0];
+    } else {
+      _selectedProvince = widget.initProvince;
+      _selectedCity = widget.initCity;
+      _selectedCounty = widget.initCounty;
+
+      _cities = _getCities(_selectedProvince);
+      _counties = _getCounties(_selectedProvince, _selectedCity);
+    }
   }
 
   @override
@@ -101,89 +104,82 @@ class _SyAreaState extends State<SyArea> {
     Navigator.pop(
         context,
         new SyAreaModel(
-            province: _areaData['province_list'][_selectedProvinceCode],
-            city: _areaData['city_list'][_selectedCityCode],
-            county: _areaData['county_list'][_selectedCountyCode],
-            areaCode: _selectedCountyCode));
+            province: _selectedProvince,
+            city: _selectedCity,
+            county: _selectedCounty ?? ''));
   }
 
   Widget _buildProvince() {
-    List<Widget> widgets = [];
-    _provinces.forEach((String areaCode, dynamic val) {
-      Widget btn = _myFlatButton(
-        text: val,
-        onPressed: _selectedProvinceCode == areaCode
-            ? null
-            : () {
-                setState(() {
-                  _selectedProvinceCode = areaCode;
-                  _cities = _getCities(areaCode);
-                  _selectedCityCode = _cities.keys.first;
-                  _counties = _getCounties(_selectedCityCode);
-                  _selectedCountyCode = _counties.keys.first;
-                });
-              },
-      );
-      widgets.add(btn);
-    });
-    return new Expanded(
+    return Expanded(
       child: Container(
         decoration: _listBorder(),
         child: ListView(
           itemExtent: 40.0,
-          children: widgets,
+          children: _provinces.map((province) {
+            return _myFlatButton(
+              text: province,
+              onPressed: _selectedProvince == province
+                  ? null
+                  : () {
+                      setState(() {
+                        _selectedProvince = province;
+                        _cities = _getCities(province);
+                        _selectedCity = _cities.first;
+                        _counties =
+                            _getCounties(_selectedProvince, _selectedCity);
+                        _selectedCounty = _counties.first;
+                      });
+                    },
+            );
+          }).toList(),
         ),
       ),
     );
   }
 
   Widget _buildCity() {
-    List<Widget> widgets = [];
-    _cities.forEach((String areaCode, dynamic val) {
-      Widget btn = _myFlatButton(
-        text: val,
-        onPressed: _selectedCityCode == areaCode
-            ? null
-            : () {
-                setState(() {
-                  _selectedCityCode = areaCode;
-                  _counties = _getCounties(areaCode);
-                  _selectedCountyCode = _counties.keys.first;
-                });
-              },
-      );
-      widgets.add(btn);
-    });
     return new Expanded(
       child: Container(
         decoration: _listBorder(),
         child: ListView(
           itemExtent: 40.0,
-          children: widgets,
+          children: _cities.map((city) {
+            return _myFlatButton(
+              text: city,
+              onPressed: _selectedCity == city
+                  ? null
+                  : () {
+                      final counties = _getCounties(_selectedProvince, city);
+                      setState(() {
+                        _selectedCity = city;
+                        _counties = counties.length > 0 ? counties : new List();
+                        _selectedCounty =
+                            counties.length > 0 ? _counties.first : '';
+                      });
+                    },
+            );
+          }).toList(),
         ),
       ),
     );
   }
 
   Widget _buildCounties() {
-    List<Widget> widgets = [];
-    _counties.forEach((String areaCode, dynamic val) {
-      Widget btn = _myFlatButton(
-        text: val,
-        onPressed: _selectedCountyCode == areaCode
-            ? null
-            : () {
-                setState(() {
-                  _selectedCountyCode = areaCode;
-                });
-              },
-      );
-      widgets.add(btn);
-    });
     return Expanded(
       child: ListView(
         itemExtent: 40.0,
-        children: widgets,
+        children: _counties.map((county) {
+          return _myFlatButton(
+            text: county,
+            onPressed: _selectedCounty == county
+                ? null
+                : () {
+                    setState(() {
+                      _selectedCounty = county;
+                    });
+                  },
+          );
+        }).toList(),
       ),
     );
   }

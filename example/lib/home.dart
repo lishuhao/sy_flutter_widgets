@@ -70,7 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 scaffoldBackgroundColor: Colors.grey[100]),
                             child: SyArea(
                               title: Text('请选择地址'),
-                              initialValue: '130304',
                             ),
                           );
                         },
