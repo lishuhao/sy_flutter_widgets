@@ -1,6 +1,6 @@
 # sy_flutter_widgets
 
-flutter 组件库
+纯flutter Widget组件库，不依赖Native及其它第三方package。包括省市区选择器，Rate评分，Stepper步进器，照片墙，地址编辑，自带加载更多的ListView和GridView
 
 ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/home.png)
 ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/stepper.png)
