@@ -50,6 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.pushNamed(context, '/image_uploader');
             },
           ),
+          SyCell(
+            title: '地址编辑',
+            onTap: () {
+              Navigator.pushNamed(context, '/address_edit');
+            },
+          ),
           Theme(
             data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
             child: SyCell(

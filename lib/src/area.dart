@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import '_area_data.dart';
+import 'models/area_model.dart';
 
 class SyArea extends StatefulWidget {
   final Widget title;
@@ -204,22 +205,4 @@ class _SyAreaState extends State<SyArea> {
       ),
     );
   }
-}
-
-//---------------------------
-
-class SyAreaModel {
-  String province;
-  String city;
-  String county;
-  String areaCode;
-
-  SyAreaModel({this.province, this.city, this.county, this.areaCode});
-
-  Map<String, dynamic> toJson() => {
-        "province": province,
-        "city": city,
-        "county": county,
-        "area_code": areaCode
-      };
 }
