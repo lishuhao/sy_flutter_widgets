@@ -23,6 +23,7 @@ class _AddressListPageState extends State<AddressListPage> {
         city: '北京城区',
         county: '丰台区',
         detailAddress: '洋桥北里128号楼',
+        areaCode: '110106',
         isDefault: false)
   ];
 

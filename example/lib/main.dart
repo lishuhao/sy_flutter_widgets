@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+        '/': (context) => MyHomePage(title: 'sy_flutter_widgets demo'),
         '/stepper': (context) => MyStepper(),
         '/rate': (context) => RateDemo(),
         '/listview': (context) => LoadMoreListView(),

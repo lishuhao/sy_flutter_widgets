@@ -34,8 +34,6 @@ class _SyAddressEditState extends State<SyAddressEdit> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
-
     Widget nameField = new TextFormField(
       initialValue: _address.name,
       decoration: InputDecoration(
@@ -74,7 +72,10 @@ class _SyAddressEditState extends State<SyAddressEdit> {
       onTap: () async {
         SyAreaModel result =
             await Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return SyArea();
+          print(_address.areaCode);
+          return SyArea(
+            initialValue: _address.areaCode,
+          );
         }));
         if (result != null) {
           print(result.toJson());
@@ -82,6 +83,7 @@ class _SyAddressEditState extends State<SyAddressEdit> {
             _address.province = result.province;
             _address.city = result.city;
             _address.county = result.county;
+            _address.areaCode = result.areaCode;
           });
           _areaController.text = _address.area;
         }
