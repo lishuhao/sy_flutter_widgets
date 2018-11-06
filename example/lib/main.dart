@@ -1,4 +1,5 @@
 import 'package:example/address_list.dart';
+import 'package:example/carousel_demo.dart';
 import 'package:example/home.dart';
 import 'package:example/image_upload.dart';
 import 'package:example/load_more_gridview.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         '/gridview': (context) => LoadMoreGridView(),
         '/image_uploader': (context) => ImageUpload(),
         '/address_edit': (context) => AddressListPage(),
+        '/carousel_demo': (context) => CarouselDemo(),
       },
     );
   }

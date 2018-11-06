@@ -1,3 +1,4 @@
+import 'package:example/experiments/experiment_home.dart';
 import 'package:flutter/material.dart';
 import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
 
@@ -13,9 +14,44 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    Widget area = new Theme(
+      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+      child: SyCell(
+        title: '省市区地址选择器',
+        onTap: () async {
+          final result = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return Theme(
+                      data: Theme.of(context)
+                          .copyWith(scaffoldBackgroundColor: Colors.grey[100]),
+                      child: SyArea(
+                        title: Text('请选择地址'),
+                      ),
+                    );
+                  },
+                  fullscreenDialog: true));
+          print(result == null ? null : result.toJson());
+        },
+      ),
+    );
+
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(
+                Icons.add,
+                color: Theme.of(context).primaryColor,
+              ),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ExperimentHome();
+                }));
+              }),
+        ],
       ),
       body: new ListView(
         padding: EdgeInsets.all(8.0),
@@ -51,33 +87,18 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           SyCell(
+            title: 'Carousel 走马灯',
+            onTap: () {
+              Navigator.pushNamed(context, '/carousel_demo');
+            },
+          ),
+          SyCell(
             title: '地址编辑',
             onTap: () {
               Navigator.pushNamed(context, '/address_edit');
             },
           ),
-          Theme(
-            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-            child: SyCell(
-              title: '省市区地址选择器',
-              onTap: () async {
-                final result = await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return Theme(
-                            data: Theme.of(context).copyWith(
-                                scaffoldBackgroundColor: Colors.grey[100]),
-                            child: SyArea(
-                              title: Text('请选择地址'),
-                            ),
-                          );
-                        },
-                        fullscreenDialog: true));
-                print(result == null ? null : result.toJson());
-              },
-            ),
-          ),
+          area,
         ],
       ),
     );
