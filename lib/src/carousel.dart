@@ -11,6 +11,12 @@ class SyCarousel extends StatefulWidget {
   final Curve curve; //动画效果
   final bool showIndicators; //是否显示指示器
   final Axis scrollDirection; //滚动方向
+
+  /// The fraction of the viewport that each page should occupy.
+  /// Defaults to 1.0, which means each page fills the viewport in the scrolling
+  /// direction.
+  final double viewportFraction;
+
   final List<Widget> children;
   final int _length;
 
@@ -23,9 +29,11 @@ class SyCarousel extends StatefulWidget {
       this.curve = Curves.fastOutSlowIn,
       this.playDuration,
       this.showIndicators = true,
-      this.scrollDirection = Axis.horizontal})
+      this.scrollDirection = Axis.horizontal,
+      this.viewportFraction = 1.0})
       : _length = children.length,
         assert(children.length > 0, 'children 数量必须大于零'),
+        assert(viewportFraction > 0.0),
         assert(
             (initIndex >= 0) && (initIndex < children.length), 'initIndex 越界');
 
@@ -49,7 +57,8 @@ class SyCarouselState extends State<SyCarousel>
     _currentPage = 100 * widget._length + widget.initIndex;
 
     _realCurrentPage = widget.initIndex;
-    _pageController = PageController(initialPage: _currentPage);
+    _pageController = PageController(
+        initialPage: _currentPage, viewportFraction: widget.viewportFraction);
 
     if (widget.autoPlay) {
       Duration playInterval = widget.playInterval ?? Duration(seconds: 3);

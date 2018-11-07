@@ -8,6 +8,7 @@
 ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/listview.jpg)
 ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/gridview.jpg)
 ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/gallery.png)
+![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/carousel-jpg.jpg)
 ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/edit_address.jpg)
 ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/area.jpg)
 
