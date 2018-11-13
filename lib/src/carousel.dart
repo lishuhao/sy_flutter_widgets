@@ -11,12 +11,7 @@ class SyCarousel extends StatefulWidget {
   final Curve curve; //动画效果
   final bool showIndicators; //是否显示指示器
   final Axis scrollDirection; //滚动方向
-
-  /// The fraction of the viewport that each page should occupy.
-  /// Defaults to 1.0, which means each page fills the viewport in the scrolling
-  /// direction.
-  final double viewportFraction;
-
+  final double viewportFraction; //每个页面在滚动方向占据的视窗比例，默认为 1
   final List<Widget> children;
   final int _length;
 
