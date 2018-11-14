@@ -1,16 +1,22 @@
+
+<p align="center">
+    <a href="https://pub.dartlang.org/packages/sy_flutter_widgets">
+        <img src="https://img.shields.io/badge/pub-0.1.1-blue.svg?branch=master" alt="Build Status" />
+    </a>
+</p>
+
 # sy_flutter_widgets
+
 
 纯flutter Widget组件库，不依赖Native及其它第三方package。包括省市区选择器，Rate评分，Stepper步进器，照片墙，地址编辑，自带加载更多的ListView和GridView
 
-![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/home.png)
-![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/stepper.png)
-![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/rate.png)
-![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/listview.jpg)
-![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/gridview.jpg)
-![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/gallery.png)
-![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/carousel-jpg.jpg)
-![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/edit_address.jpg)
-![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/area.jpg)
+ _| _
+------------ | -------------
+![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/home.png)|![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/stepper.png)
+![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/rate.png)|![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/listview.jpg)
+![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/gridview.jpg)|![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/gallery.png)
+![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/carousel-jpg.jpg)|![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/edit_address.jpg)
+![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/area.jpg)|
 
 
 ####
