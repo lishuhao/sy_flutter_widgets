@@ -2,13 +2,13 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class CircleProgress extends StatefulWidget {
+class SyCircleProgress extends StatefulWidget {
   final double progress; //进度 0～1
   final Color primaryColor; //进度条主色
   final Color secondaryColor; //进度条背景色
   final double strokeWidth; //进度条宽度
 
-  const CircleProgress(
+  const SyCircleProgress(
       {Key key,
       @required this.progress,
       @required this.primaryColor,
@@ -18,10 +18,10 @@ class CircleProgress extends StatefulWidget {
         super(key: key);
 
   @override
-  _CircleProgressState createState() => _CircleProgressState();
+  _SyCircleProgressState createState() => _SyCircleProgressState();
 }
 
-class _CircleProgressState extends State<CircleProgress>
+class _SyCircleProgressState extends State<SyCircleProgress>
     with TickerProviderStateMixin {
   AnimationController _controller;
   @override

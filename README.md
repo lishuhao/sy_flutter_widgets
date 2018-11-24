@@ -17,6 +17,7 @@ _ | _
 ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/gridview.jpg) | ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/gallery.png)
 ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/carousel-jpg.jpg) | ![](https://raw.githubusercontent.com/lishuhao/sy_flutter_widgets/master/example/images/edit_address.jpg)
 ![](https://raw.githubusercontent.com/lishuhao/assets/master/sy_flutter_widgets/choose_address.jpg) | ![](https://raw.githubusercontent.com/lishuhao/assets/master/sy_flutter_widgets/circle_progress.png)
+![](https://raw.githubusercontent.com/lishuhao/assets/master/sy_flutter_widgets/wave_progress.jpg) | -
 
 
 ####

@@ -100,10 +100,17 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           SyCell(
-            icon: Icon(Icons.settings_backup_restore),
+            icon: Icon(Icons.autorenew),
             title: '圆形进度条',
             onTap: () {
               Navigator.pushNamed(context, '/circle_progress_demo');
+            },
+          ),
+          SyCell(
+            icon: Icon(Icons.all_inclusive),
+            title: '波浪进度条',
+            onTap: () {
+              Navigator.pushNamed(context, '/wave_progress_demo');
             },
           ),
           SyCell(

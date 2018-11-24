@@ -13,3 +13,4 @@ export 'src/listview_with_load_more.dart';
 export 'src/models/address_model.dart';
 export 'src/rate.dart';
 export 'src/stepper.dart';
+export 'src/wave_progress.dart';

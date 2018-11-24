@@ -17,7 +17,7 @@ class _CircleProgressDemoState extends State<CircleProgressDemo> {
           AspectRatio(
             aspectRatio: 1,
             child: Container(
-              child: CircleProgress(
+              child: SyCircleProgress(
                 progress: 0.8,
                 primaryColor: Colors.blue,
                 secondaryColor: Colors.black12,
@@ -31,7 +31,7 @@ class _CircleProgressDemoState extends State<CircleProgressDemo> {
           AspectRatio(
             aspectRatio: 1,
             child: Container(
-              child: CircleProgress(
+              child: SyCircleProgress(
                 progress: 0.6,
                 primaryColor: Colors.red,
                 secondaryColor: Colors.black12,

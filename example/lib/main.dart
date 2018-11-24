@@ -7,6 +7,7 @@ import 'package:example/load_more_gridview.dart';
 import 'package:example/load_more_listview.dart';
 import 'package:example/rate.dart';
 import 'package:example/stepper.dart';
+import 'package:example/wave_progress_demo.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(new MyApp());
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/address_edit': (context) => AddressListPage(),
         '/carousel_demo': (context) => CarouselDemo(),
         '/circle_progress_demo': (context) => CircleProgressDemo(),
+        '/wave_progress_demo': (context) => WaveProgressDemo(),
       },
     );
   }
