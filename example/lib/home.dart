@@ -17,6 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget area = new Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: SyCell(
+        icon: Icon(Icons.location_on),
         title: '省市区地址选择器',
         onTap: () async {
           final result = await Navigator.push(
@@ -57,48 +58,56 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.all(8.0),
         children: <Widget>[
           SyCell(
+            icon: Icon(Icons.add),
             title: 'Stepper步进器',
             onTap: () {
               Navigator.pushNamed(context, '/stepper');
             },
           ),
           SyCell(
+            icon: Icon(Icons.star_border),
             title: 'Rate 评分',
             onTap: () {
               Navigator.pushNamed(context, '/rate');
             },
           ),
           SyCell(
+            icon: Icon(Icons.filter_list),
             title: 'ListView with Load more',
             onTap: () {
               Navigator.pushNamed(context, '/listview');
             },
           ),
           SyCell(
+            icon: Icon(Icons.grid_on),
             title: 'GridView with Load more',
             onTap: () {
               Navigator.pushNamed(context, '/gridview');
             },
           ),
           SyCell(
+            icon: Icon(Icons.image),
             title: '图片墙',
             onTap: () {
               Navigator.pushNamed(context, '/image_uploader');
             },
           ),
           SyCell(
+            icon: Icon(Icons.repeat),
             title: 'Carousel 走马灯',
             onTap: () {
               Navigator.pushNamed(context, '/carousel_demo');
             },
           ),
           SyCell(
+            icon: Icon(Icons.settings_backup_restore),
             title: '圆形进度条',
             onTap: () {
               Navigator.pushNamed(context, '/circle_progress_demo');
             },
           ),
           SyCell(
+            icon: Icon(Icons.location_city),
             title: '地址编辑',
             onTap: () {
               Navigator.pushNamed(context, '/address_edit');
