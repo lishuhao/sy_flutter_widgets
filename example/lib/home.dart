@@ -93,6 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           SyCell(
+            title: '圆形进度条',
+            onTap: () {
+              Navigator.pushNamed(context, '/circle_progress_demo');
+            },
+          ),
+          SyCell(
             title: '地址编辑',
             onTap: () {
               Navigator.pushNamed(context, '/address_edit');
