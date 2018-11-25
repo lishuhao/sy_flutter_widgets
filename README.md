@@ -1,7 +1,7 @@
 
 <p align="center">
     <a href="https://pub.dartlang.org/packages/sy_flutter_widgets">
-        <img src="https://img.shields.io/badge/pub-0.1.3-blue.svg?branch=master" alt="Build Status" />
+        <img src="https://img.shields.io/badge/pub-0.1.4-blue.svg?branch=master" alt="Build Status" />
     </a>
 </p>
 
