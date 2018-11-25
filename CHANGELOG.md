@@ -1,5 +1,8 @@
-## [0.1.3] - 2019-11-25
-## [0.1.2] - 2019-11-25
+## [0.1.4] - 2018-11-25
+* translate pubspec.yaml description
+
+## [0.1.3] - 2018-11-25
+## [0.1.2] - 2018-11-25
 
 * add circle progress bar widget
 * add wave progress bar widget
