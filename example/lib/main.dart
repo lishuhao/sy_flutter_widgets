@@ -1,15 +1,16 @@
-import 'package:example/address_list.dart';
-import 'package:example/carousel_demo.dart';
-import 'package:example/circle_progress.dart';
-import 'package:example/colorful_divider_demo.dart';
-import 'package:example/home.dart';
-import 'package:example/image_upload.dart';
-import 'package:example/load_more_gridview.dart';
-import 'package:example/load_more_listview.dart';
-import 'package:example/rate.dart';
-import 'package:example/stepper.dart';
-import 'package:example/wave_progress_demo.dart';
 import 'package:flutter/material.dart';
+
+import 'address_list.dart';
+import 'carousel_demo.dart';
+import 'circle_progress.dart';
+import 'colorful_divider_demo.dart';
+import 'home.dart';
+import 'image_upload.dart';
+import 'load_more_gridview.dart';
+import 'load_more_listview.dart';
+import 'rate.dart';
+import 'stepper.dart';
+import 'wave_progress_demo.dart';
 
 void main() => runApp(new MyApp());
 

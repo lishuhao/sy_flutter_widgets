@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:example/model/repo.dart';
-import 'package:example/service/api.dart';
 import 'package:flutter/material.dart';
 import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
+
+import 'model/repo.dart';
+import 'service/api.dart';
 
 class LoadMoreGridView extends StatefulWidget {
   @override

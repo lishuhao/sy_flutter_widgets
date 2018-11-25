@@ -1,3 +1,4 @@
+## [0.1.3] - 2019-11-25
 ## [0.1.2] - 2019-11-25
 
 * add circle progress bar widget

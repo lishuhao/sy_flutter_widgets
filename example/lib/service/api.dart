@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:example/model/repo.dart';
 import 'package:http/http.dart' as http;
+
+import '../model/repo.dart';
 
 Future<List<GithubRepo>> getRepos(int page) async {
   final url =
