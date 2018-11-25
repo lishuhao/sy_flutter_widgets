@@ -1,6 +1,6 @@
 name: sy_flutter_widgets
 description: 纯flutter Widget组件库，不依赖Native及其它第三方package。包括省市区选择器，Rate评分，Stepper步进器，照片墙，地址编辑，自带加载更多的ListView和GridView
-version: 0.1.1
+version: 0.1.2
 author: lishuhao <gg2366493058@gmail.com>
 homepage: https://github.com/lishuhao/sy_flutter_widgets
 
