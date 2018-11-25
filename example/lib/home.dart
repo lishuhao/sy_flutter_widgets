@@ -114,6 +114,13 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           SyCell(
+            icon: Icon(Icons.linear_scale),
+            title: '彩色分隔条',
+            onTap: () {
+              Navigator.pushNamed(context, '/colorful_divider_demo');
+            },
+          ),
+          SyCell(
             icon: Icon(Icons.location_city),
             title: '地址编辑',
             onTap: () {

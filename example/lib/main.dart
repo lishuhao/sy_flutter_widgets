@@ -1,6 +1,7 @@
 import 'package:example/address_list.dart';
 import 'package:example/carousel_demo.dart';
 import 'package:example/circle_progress.dart';
+import 'package:example/colorful_divider_demo.dart';
 import 'package:example/home.dart';
 import 'package:example/image_upload.dart';
 import 'package:example/load_more_gridview.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/carousel_demo': (context) => CarouselDemo(),
         '/circle_progress_demo': (context) => CircleProgressDemo(),
         '/wave_progress_demo': (context) => WaveProgressDemo(),
+        '/colorful_divider_demo': (context) => ColorfulDividerDemo(),
       },
     );
   }
