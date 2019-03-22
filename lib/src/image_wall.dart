@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 typedef void ImagesChangeCallback(List<String> newImages);
 typedef Future<String> UploadImageCallback();
 
+/// 点击删除按钮时的回调
+typedef RemoveImageCallback(String removedUrl);
+
 //照片墙
 class SyImageWall extends StatefulWidget {
   final Widget uploadBtn;
@@ -14,17 +17,19 @@ class SyImageWall extends StatefulWidget {
   final bool reorderable; //是否允许排序
   final ImagesChangeCallback onChange;
   final UploadImageCallback onUpload;
+  final RemoveImageCallback onRemove;
 
-  const SyImageWall(
-      {Key key,
-      this.rowCount = 4,
-      this.maxCount,
-      this.images,
-      @required this.onChange,
-      @required this.onUpload,
-      this.uploadBtn,
-      this.reorderable = true})
-      : super(key: key);
+  const SyImageWall({
+    Key key,
+    this.rowCount = 4,
+    this.maxCount,
+    this.images,
+    @required this.onChange,
+    @required this.onUpload,
+    this.uploadBtn,
+    this.reorderable = true,
+    this.onRemove,
+  }) : super(key: key);
 
   @override
   _SyImageWallState createState() => _SyImageWallState();
@@ -55,14 +60,16 @@ class _SyImageWallState extends State<SyImageWall> {
           ? () async {
               //排序
               List<String> orderedImages = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) {
-                        return ReorderImage(
-                          images: images,
-                        );
-                      },
-                      fullscreenDialog: true));
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ReorderImage(
+                      images: images,
+                    );
+                  },
+                  fullscreenDialog: true,
+                ),
+              );
               print(orderedImages);
               if (orderedImages != null) {
                 setState(() {
@@ -97,17 +104,22 @@ class _SyImageWallState extends State<SyImageWall> {
           fit: BoxFit.cover,
         ),
         Positioned(
-            right: 0.0,
-            top: 0.0,
-            child: InkWell(
-                child:
-                    Icon(Icons.cancel, color: Theme.of(context).disabledColor),
-                onTap: () {
-                  setState(() {
-                    images.removeAt(index);
-                  });
-                  widget.onChange(images);
-                }))
+          right: 0.0,
+          top: 0.0,
+          child: InkWell(
+            child: Icon(Icons.cancel, color: Theme.of(context).disabledColor),
+            onTap: () {
+              String removedUrl;
+              setState(() {
+                removedUrl = images.removeAt(index);
+              });
+              widget.onChange(images);
+              if (widget.onRemove != null) {
+                widget.onRemove(removedUrl);
+              }
+            },
+          ),
+        )
       ],
     );
   }
@@ -115,9 +127,11 @@ class _SyImageWallState extends State<SyImageWall> {
   Widget _buildAddImageButton() {
     Widget btn = Container(
       decoration: BoxDecoration(
-          border: Border.all(
-              style: BorderStyle.solid,
-              color: Theme.of(context).disabledColor)),
+        border: Border.all(
+          style: BorderStyle.solid,
+          color: Theme.of(context).disabledColor,
+        ),
+      ),
       child: Icon(Icons.add, color: Theme.of(context).disabledColor),
     );
 
