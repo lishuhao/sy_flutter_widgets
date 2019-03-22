@@ -22,12 +22,13 @@ class SyReorderableGrid extends StatefulWidget {
 
 class _SyReorderableGridState extends State<SyReorderableGrid> {
   int _dragStartIndex;
-  int _currentIndex;
 
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      crossAxisCount: 3,
+      crossAxisCount: 2,
+      mainAxisSpacing: 4,
+      crossAxisSpacing: 4,
       children: _buildBody(),
     );
   }
@@ -65,7 +66,6 @@ class _SyReorderableGridState extends State<SyReorderableGrid> {
           onDragStarted: () {
             setState(() {
               _dragStartIndex = index;
-              _currentIndex = index;
             });
           },
           onDragCompleted: () {
@@ -81,16 +81,11 @@ class _SyReorderableGridState extends State<SyReorderableGrid> {
         );
       },
       onWillAccept: (data) {
-        if (_currentIndex != index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        }
         return true;
       },
       onAccept: (data) {
         if (data != index) {
-          widget.onReorder(_dragStartIndex, _currentIndex);
+          widget.onReorder(_dragStartIndex, index);
         }
         return true;
       },

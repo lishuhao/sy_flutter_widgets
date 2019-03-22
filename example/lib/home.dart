@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ExperimentHome();
+                  return ExperimentHome(); //实验性质的组件
                 }));
               }),
         ],

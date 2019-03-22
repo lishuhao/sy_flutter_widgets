@@ -26,36 +26,37 @@ class _ColorfulDividerDemoState extends State<ColorfulDividerDemo> {
     );
 
     return Scaffold(
-        appBar: AppBar(title: Text('colorful divider demo')),
-        body: ListView(
-          children: <Widget>[
-            _divider,
-            SizedBox(
-              height: 4.0,
-              child: SyColorfulDivider(
-                colors: _colors,
-                stops: _stops,
-              ),
+      appBar: AppBar(title: Text('colorful divider demo')),
+      body: ListView(
+        children: <Widget>[
+          _divider,
+          SizedBox(
+            height: 4.0,
+            child: SyColorfulDivider(
+              colors: _colors,
+              stops: _stops,
             ),
-            _divider,
-            SizedBox(
-              height: 8.0,
-              child: SyColorfulDivider(
-                colors: _colors,
-                stops: _stops,
-                skewX: 0,
-              ),
+          ),
+          _divider,
+          SizedBox(
+            height: 8.0,
+            child: SyColorfulDivider(
+              colors: _colors,
+              stops: _stops,
+              skewX: 0,
             ),
-            _divider,
-            SizedBox(
-              height: 8.0,
-              child: SyColorfulDivider(
-                colors: _colors,
-                stops: _stops,
-                skewX: 1,
-              ),
+          ),
+          _divider,
+          SizedBox(
+            height: 8.0,
+            child: SyColorfulDivider(
+              colors: _colors,
+              stops: _stops,
+              skewX: 1,
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
