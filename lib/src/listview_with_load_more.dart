@@ -15,7 +15,7 @@ class SyListViewWithLoadMore extends StatefulWidget {
 
   final PullCallback onLoadMore;
   final RefreshCallback onRefresh;
-  final final ScrollPhysics physics;
+  final ScrollPhysics physics;
 
   const SyListViewWithLoadMore(
       {Key key,
