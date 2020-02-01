@@ -15,6 +15,7 @@ class SyListViewWithLoadMore extends StatefulWidget {
 
   final PullCallback onLoadMore;
   final RefreshCallback onRefresh;
+  final final ScrollPhysics physics;
 
   const SyListViewWithLoadMore(
       {Key key,
@@ -22,7 +23,8 @@ class SyListViewWithLoadMore extends StatefulWidget {
       @required this.onLoadMore,
       @required this.itemBuilder,
       this.onRefresh,
-      this.itemExtent})
+      this.itemExtent,
+      this.physics})
       : super(key: key);
 
   @override
@@ -88,6 +90,7 @@ class _SyListViewWithLoadMoreState extends State<SyListViewWithLoadMore> {
       children: <Widget>[
         Expanded(
           child: ListView.builder(
+              physics:widget.physics,
               itemExtent: widget.itemExtent,
               controller: _scrollController,
               itemCount: widget.itemCount,
