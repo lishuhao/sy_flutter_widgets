@@ -5,13 +5,13 @@ import 'models/address_model.dart';
 import 'models/area_model.dart';
 
 const EmptyAreaText = '选择省/市/区';
-typedef void SaveCallback(SyAddressModel address);
+typedef void SaveCallback(SyAddressModel? address);
 
 class SyAddressEdit extends StatefulWidget {
-  final SyAddressModel address;
+  final SyAddressModel? address;
   final SaveCallback onSave;
 
-  SyAddressEdit({this.address, @required this.onSave});
+  SyAddressEdit({this.address, required this.onSave});
 
   @override
   _SyAddressEditState createState() => new _SyAddressEditState();
@@ -22,43 +22,43 @@ class _SyAddressEditState extends State<SyAddressEdit> {
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
   TextEditingController _areaController = TextEditingController();
 
-  SyAddressModel _address;
+  SyAddressModel? _address;
 
   @override
   void initState() {
     super.initState();
     _address = widget.address ?? SyAddressModel();
     _areaController.text =
-        _address.province.isEmpty ? EmptyAreaText : _address.area;
+        _address!.province!.isEmpty ? EmptyAreaText : _address!.area;
   }
 
   @override
   Widget build(BuildContext context) {
     Widget nameField = new TextFormField(
-      initialValue: _address.name,
+      initialValue: _address!.name,
       decoration: InputDecoration(
           labelText: '收货人',
           hintText: '请使用真实姓名',
           hintStyle: TextStyle(fontSize: 12.0)),
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return '请填写收货人姓名';
         }
       },
-      onSaved: (String value) {
-        _address.name = value;
+      onSaved: (String? value) {
+        _address!.name = value;
       },
     );
 
     Widget phoneField = new TextFormField(
-      initialValue: _address.phone,
+      initialValue: _address!.phone,
       decoration: InputDecoration(
           labelText: '电话',
           hintText: '收货人手机号',
           hintStyle: TextStyle(fontSize: 12.0)),
       validator: _validPhone,
-      onSaved: (String value) {
-        _address.phone = value;
+      onSaved: (String? value) {
+        _address!.phone = value;
       },
     );
 
@@ -70,38 +70,38 @@ class _SyAddressEditState extends State<SyAddressEdit> {
             labelText: '地区', hintStyle: TextStyle(fontSize: 12.0)),
       ),
       onTap: () async {
-        SyAreaModel result =
+        SyAreaModel? result =
             await Navigator.push(context, MaterialPageRoute(builder: (context) {
           return SyArea(
-            initProvince: _address.province,
-            initCity: _address.city,
-            initCounty: _address.county,
+            initProvince: _address!.province,
+            initCity: _address!.city,
+            initCounty: _address!.county,
           );
         }));
         if (result != null) {
           setState(() {
-            _address.province = result.province;
-            _address.city = result.city;
-            _address.county = result.county;
+            _address!.province = result.province;
+            _address!.city = result.city;
+            _address!.county = result.county;
           });
-          _areaController.text = _address.area;
+          _areaController.text = _address!.area;
         }
       },
     );
 
     Widget detailField = new TextFormField(
-      initialValue: _address.detailAddress,
+      initialValue: _address!.detailAddress,
       decoration: InputDecoration(
           labelText: '详细地址',
           hintText: '（如街道、小区、乡镇、村）',
           hintStyle: TextStyle(fontSize: 12.0)),
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return '请填写详细地址';
         }
       },
-      onSaved: (String value) {
-        _address.detailAddress = value;
+      onSaved: (String? value) {
+        _address!.detailAddress = value;
       },
     );
 
@@ -112,10 +112,10 @@ class _SyAddressEditState extends State<SyAddressEdit> {
         children: <Widget>[
           Text('设为默认收货地址'),
           Switch(
-              value: _address.isDefault,
+              value: _address!.isDefault,
               onChanged: (val) {
                 setState(() {
-                  _address.isDefault = val;
+                  _address!.isDefault = val;
                 });
               })
         ],
@@ -152,21 +152,21 @@ class _SyAddressEditState extends State<SyAddressEdit> {
   }
 
   _onSubmit() {
-    if (!_formKey.currentState.validate()) {
+    if (!_formKey.currentState!.validate()) {
       return;
     }
     if (_areaController.text.isEmpty || _areaController.text == EmptyAreaText) {
-      _scaffoldKey.currentState
+      _scaffoldKey.currentState!
           .showSnackBar(SnackBar(content: Text('请选择收货地址')));
       return;
     }
-    _formKey.currentState.save();
+    _formKey.currentState!.save();
     widget.onSave(_address);
     Navigator.pop(context);
   }
 
-  String _validPhone(String phone) {
-    if (phone.isEmpty) {
+  String? _validPhone(String? phone) {
+    if (phone!.isEmpty) {
       return '请输入手机号码';
     }
     if (phone.length != 11) {

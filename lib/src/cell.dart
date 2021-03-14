@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SyCell extends StatelessWidget {
-  final Widget icon;
+  final Widget? icon;
   final String title;
   final String endText;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   SyCell({
-    @required this.title,
+    required this.title,
     this.icon,
     this.onTap,
     this.endText: '',

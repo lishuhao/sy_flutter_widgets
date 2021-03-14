@@ -7,7 +7,7 @@ class SyColorfulDivider extends StatelessWidget {
   /// same as [Canvas.skew] the horizontal skew in radians clockwise around the origin
   final double skewX;
 
-  SyColorfulDivider({Key key, this.colors, this.stops, this.skewX = -1})
+  SyColorfulDivider({Key? key, required this.colors, required this.stops, this.skewX = -1})
       : assert(stops.every((double stop) => stop >= 0)),
         assert(colors.length == stops.length),
         super(key: key);
@@ -25,9 +25,9 @@ class SyColorfulDivider extends StatelessWidget {
 }
 
 class _ColorfulPainter extends CustomPainter {
-  final List<Color> colors;
-  final List<double> stops;
-  final double skewX;
+  final List<Color>? colors;
+  final List<double>? stops;
+  final double? skewX;
 
   const _ColorfulPainter({this.colors, this.stops, this.skewX});
 
@@ -36,7 +36,7 @@ class _ColorfulPainter extends CustomPainter {
     assert(size.height > 0, 'SyColorfulDivider: height must > 0');
     assert(size.width > 0, 'SyColorfulDivider: width must > 0');
     List<Paint> paints = [];
-    for (Color color in colors) {
+    for (Color color in colors!) {
       Paint paint = Paint()
         ..color = color
         ..strokeWidth = size.height;
@@ -46,17 +46,17 @@ class _ColorfulPainter extends CustomPainter {
     Rect rect = Offset.zero & size;
     canvas.clipRect(rect);
 
-    canvas.translate(-stops[0] / 2, size.height / 2);
-    canvas.skew(skewX, 0);
+    canvas.translate(-stops![0] / 2, size.height / 2);
+    canvas.skew(skewX!, 0);
 
     int i = 0;
     double totalWidth = 0;
     while (true) {
-      if (totalWidth >= size.width + stops[0]) {
+      if (totalWidth >= size.width + stops![0]) {
         break;
       }
-      final Paint paint = paints[i % colors.length];
-      final itemWidth = stops[i % stops.length];
+      final Paint paint = paints[i % colors!.length];
+      final itemWidth = stops![i % stops!.length];
       canvas.drawLine(
         Offset(totalWidth, 0),
         Offset(totalWidth + itemWidth, 0),

@@ -5,10 +5,10 @@ import 'package:sy_flutter_widgets/src/models/address_model.dart';
 const _addressItemPadding = 8.0;
 
 class SyAddressItem extends StatelessWidget {
-  final SyAddressModel address;
+  final SyAddressModel? address;
   final VoidCallback onEdit;
 
-  const SyAddressItem({Key key, this.address, @required this.onEdit})
+  const SyAddressItem({Key? key, this.address, required this.onEdit})
       : super(key: key);
 
   @override
@@ -29,8 +29,8 @@ class SyAddressItem extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: Text(
-                        address.name,
-                        style: theme.textTheme.subhead
+                        address!.name!,
+                        style: theme.textTheme.subhead!
                             .copyWith(fontWeight: FontWeight.bold),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -43,13 +43,13 @@ class SyAddressItem extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child: Text(
-                              address.phone,
+                              address!.phone!,
                               style: theme.textTheme.subhead,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          address.isDefault
+                          address!.isDefault
                               ? Padding(
                                   padding: const EdgeInsets.only(
                                       left: _addressItemPadding),
@@ -70,7 +70,7 @@ class SyAddressItem extends StatelessWidget {
                 SizedBox(
                   height: _addressItemPadding,
                 ),
-                Text(address.completeAddress, style: theme.textTheme.body1)
+                Text(address!.completeAddress, style: theme.textTheme.body1)
               ],
             ),
           ),

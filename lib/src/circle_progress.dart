@@ -9,10 +9,10 @@ class SyCircleProgress extends StatefulWidget {
   final double strokeWidth; //进度条宽度
 
   const SyCircleProgress(
-      {Key key,
-      @required this.progress,
-      @required this.primaryColor,
-      @required this.secondaryColor,
+      {Key? key,
+      required this.progress,
+      required this.primaryColor,
+      required this.secondaryColor,
       this.strokeWidth = 10.0})
       : assert(progress >= 0 && progress <= 1),
         super(key: key);
@@ -23,7 +23,7 @@ class SyCircleProgress extends StatefulWidget {
 
 class _SyCircleProgressState extends State<SyCircleProgress>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   @override
   void initState() {
     super.initState();

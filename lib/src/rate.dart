@@ -6,12 +6,12 @@ typedef int CallBack(int);
 class SyRate extends StatefulWidget {
   final int total; //总数
   final int value; //当前数
-  final IconData icon;
+  final IconData? icon;
   final double iconSize;
-  final CallBack onTap;
+  final CallBack? onTap;
 
   const SyRate(
-      {Key key,
+      {Key? key,
       this.onTap,
       this.total = 5,
       this.value = 3,
@@ -26,7 +26,7 @@ class SyRate extends StatefulWidget {
 }
 
 class _SyRateState extends State<SyRate> {
-  int _starNum;
+  int? _starNum;
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _SyRateState extends State<SyRate> {
         child: InkWell(
             child: Icon(
               widget.icon ?? Icons.star,
-              color: _starNum >= i
+              color: _starNum! >= i
                   ? theme.accentColor
                   : theme.disabledColor.withOpacity(0.2),
               size: widget.iconSize,
@@ -64,7 +64,7 @@ class _SyRateState extends State<SyRate> {
                     setState(() {
                       _starNum = i;
                     });
-                    widget.onTap(_starNum);
+                    widget.onTap!(_starNum);
                   }),
       );
 

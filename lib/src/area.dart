@@ -7,13 +7,13 @@ import '_area_data.dart';
 import 'models/area_model.dart';
 
 class SyArea extends StatefulWidget {
-  final Widget title;
-  final String initProvince;
-  final String initCity;
-  final String initCounty;
+  final Widget? title;
+  final String? initProvince;
+  final String? initCity;
+  final String? initCounty;
 
   const SyArea(
-      {Key key,
+      {Key? key,
       this.title,
       this.initProvince = '',
       this.initCity = '',
@@ -26,25 +26,25 @@ class SyArea extends StatefulWidget {
 
 class _SyAreaState extends State<SyArea> {
   final _areaData = json.decode(areaData);
-  List<String> _provinces;
-  List<String> _cities;
-  List<String> _counties;
+  List<String>? _provinces;
+  late List<String> _cities;
+  late List<String> _counties;
 
   //选中的
-  String _selectedProvince;
-  String _selectedCity;
-  String _selectedCounty;
+  String? _selectedProvince;
+  String? _selectedCity;
+  String? _selectedCounty;
 
-  List<String> _getCities(String province) {
+  List<String> _getCities(String? province) {
     if (_areaData[province] == null) {
-      return new List();
+      return [];
     }
-    return (_areaData[province] as Map).keys.toList();
+    return (_areaData[province] as Map).keys.toList() as List<String>;
   }
 
-  List<String> _getCounties(String province, String city) {
+  List<String> _getCounties(String? province, String? city) {
     if (_areaData[province] == null || _areaData[province][city] == null) {
-      return new List();
+      return [];
     }
     return (_areaData[province][city] as List)
         .map((item) => item.toString())
@@ -61,7 +61,7 @@ class _SyAreaState extends State<SyArea> {
     if (!cities.contains(widget.initCity) ||
         (counties.length > 0 && !counties.contains(widget.initCounty))) {
       //没找到初始值
-      _selectedProvince = _provinces.first;
+      _selectedProvince = _provinces!.first;
       _cities = _getCities(_selectedProvince);
       _selectedCity = _cities.first;
       _counties = _getCounties(_selectedProvince, _selectedCity);
@@ -115,7 +115,7 @@ class _SyAreaState extends State<SyArea> {
         decoration: _listBorder(),
         child: ListView(
           itemExtent: 40.0,
-          children: _provinces.map((province) {
+          children: _provinces!.map((province) {
             return _myFlatButton(
               text: province,
               onPressed: _selectedProvince == province
@@ -152,7 +152,7 @@ class _SyAreaState extends State<SyArea> {
                       final counties = _getCounties(_selectedProvince, city);
                       setState(() {
                         _selectedCity = city;
-                        _counties = counties.length > 0 ? counties : new List();
+                        _counties = counties.length > 0 ? counties : [];
                         _selectedCounty =
                             counties.length > 0 ? _counties.first : '';
                       });
@@ -187,12 +187,12 @@ class _SyAreaState extends State<SyArea> {
   BoxDecoration _listBorder() => BoxDecoration(
       border: Border(right: BorderSide(color: Theme.of(context).dividerColor)));
 
-  Widget _myFlatButton({String text, VoidCallback onPressed}) {
+  Widget _myFlatButton({required String text, VoidCallback? onPressed}) {
     ThemeData theme = Theme.of(context);
     return FlatButton(
       textColor: theme.hintColor,
       disabledColor: theme.cardColor,
-      disabledTextColor: theme.textTheme.title.color,
+      disabledTextColor: theme.textTheme.title!.color,
       onPressed: onPressed,
       child: Text(
         text,

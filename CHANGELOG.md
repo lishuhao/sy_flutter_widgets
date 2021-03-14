@@ -1,3 +1,6 @@
+## [0.2.0] - 2021-03-14
+*
+
 ## [0.1.4] - 2018-11-25
 * translate pubspec.yaml description
 

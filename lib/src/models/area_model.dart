@@ -1,7 +1,7 @@
 class SyAreaModel {
-  String province;
-  String city;
-  String county;
+  String? province;
+  String? city;
+  String? county;
 
   SyAreaModel({this.province, this.city, this.county});
 

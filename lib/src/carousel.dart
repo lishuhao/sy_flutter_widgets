@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class SyCarousel extends StatefulWidget {
   final bool autoPlay; //是否自动播放
-  final Duration playInterval; //自动切换的时间间隔
-  final Duration playDuration; //动画时长
+  final Duration? playInterval; //自动切换的时间间隔
+  final Duration? playDuration; //动画时长
   final int initIndex; //初始播放位置,从0开始
   final double dotSize; //指示器大小
   final Curve curve; //动画效果
@@ -16,7 +16,7 @@ class SyCarousel extends StatefulWidget {
   final int _length;
 
   SyCarousel(
-      {@required this.children,
+      {required this.children,
       this.playInterval,
       this.autoPlay = false,
       this.initIndex = 0,
@@ -40,10 +40,10 @@ class SyCarousel extends StatefulWidget {
 
 class SyCarouselState extends State<SyCarousel>
     with SingleTickerProviderStateMixin {
-  PageController _pageController;
-  Timer timer;
-  int _currentPage;
-  int _realCurrentPage;
+  PageController? _pageController;
+  Timer? timer;
+  late int _currentPage;
+  int? _realCurrentPage;
 
   @override
   void initState() {
@@ -63,7 +63,7 @@ class SyCarouselState extends State<SyCarousel>
         setState(() {
           _currentPage = toPage;
         });
-        _pageController.animateToPage(toPage,
+        _pageController!.animateToPage(toPage,
             duration: playDuration, curve: widget.curve);
       });
     }
@@ -72,7 +72,7 @@ class SyCarouselState extends State<SyCarousel>
   @override
   void dispose() {
     if (timer != null) {
-      timer.cancel();
+      timer!.cancel();
     }
     super.dispose();
   }

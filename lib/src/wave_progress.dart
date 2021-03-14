@@ -8,11 +8,11 @@ class SyWaveProgress extends StatefulWidget {
   final Color secondaryColor; //次色调
 
   const SyWaveProgress({
-    Key key,
-    this.percent,
-    @required this.primaryColor,
-    @required this.secondaryColor,
-  })  : assert(percent >= 0 && percent <= 1.0),
+    Key? key,
+    required this.percent,
+    required this.primaryColor,
+    required this.secondaryColor,
+  })   : assert(percent >= 0 && percent <= 1.0),
         super(key: key);
   @override
   _SyWaveProgressState createState() => _SyWaveProgressState();
@@ -20,9 +20,9 @@ class SyWaveProgress extends StatefulWidget {
 
 class _SyWaveProgressState extends State<SyWaveProgress>
     with TickerProviderStateMixin {
-  AnimationController _waveController;
-  AnimationController _heightController;
-  Animation<double> _heightAnimation;
+  late AnimationController _waveController;
+  late AnimationController _heightController;
+  late Animation<double> _heightAnimation;
 
   @override
   void initState() {
@@ -66,7 +66,7 @@ class _SyWaveProgressState extends State<SyWaveProgress>
       child: Center(
         child: Text(
           '${(_heightAnimation.value * 100).toStringAsFixed(0)}%',
-          style: Theme.of(context).textTheme.display1,
+          style: Theme.of(context).textTheme.headline4,
         ),
       ),
     );
@@ -76,14 +76,14 @@ class _SyWaveProgressState extends State<SyWaveProgress>
 class MyPainter extends CustomPainter {
   final double percent; //0~1
   final double offsetPercent;
-  final Color primaryColor;
-  final Color secondaryColor;
+  final Color? primaryColor;
+  final Color? secondaryColor;
 
   MyPainter(
-      {this.percent,
+      {required this.percent,
       this.primaryColor,
       this.secondaryColor,
-      this.offsetPercent})
+      required this.offsetPercent})
       : assert(percent >= 0 && percent <= 1, 'percent:0~1'),
         assert(offsetPercent >= 0 && offsetPercent <= 1);
 
@@ -92,8 +92,8 @@ class MyPainter extends CustomPainter {
     final canvasWidth = size.width;
     final offset = canvasWidth * (1 - offsetPercent);
     final offset2 = canvasWidth * offsetPercent;
-    _drawWave(canvas, size, offset, secondaryColor);
-    _drawWave(canvas, size, offset2, primaryColor);
+    _drawWave(canvas, size, offset, secondaryColor!);
+    _drawWave(canvas, size, offset2, primaryColor!);
 
     canvas.drawCircle(Offset(canvasWidth / 2, canvasWidth / 2), canvasWidth / 2,
         Paint()..style = PaintingStyle.stroke);

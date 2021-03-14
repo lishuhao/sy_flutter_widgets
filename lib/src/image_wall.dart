@@ -6,26 +6,26 @@ typedef void ImagesChangeCallback(List<String> newImages);
 typedef Future<String> UploadImageCallback();
 
 /// 点击删除按钮时的回调
-typedef RemoveImageCallback(String removedUrl);
+typedef RemoveImageCallback(String? removedUrl);
 
 //照片墙
 class SyImageWall extends StatefulWidget {
-  final Widget uploadBtn;
+  final Widget? uploadBtn;
   final int rowCount; //item per row
-  final int maxCount; //限制上传数量
-  final List<String> images; //initial images
+  final int? maxCount; //限制上传数量
+  final List<String>? images; //initial images
   final bool reorderable; //是否允许排序
   final ImagesChangeCallback onChange;
   final UploadImageCallback onUpload;
-  final RemoveImageCallback onRemove;
+  final RemoveImageCallback? onRemove;
 
   const SyImageWall({
-    Key key,
+    Key? key,
     this.rowCount = 4,
     this.maxCount,
     this.images,
-    @required this.onChange,
-    @required this.onUpload,
+    required this.onChange,
+    required this.onUpload,
     this.uploadBtn,
     this.reorderable = true,
     this.onRemove,
@@ -41,7 +41,7 @@ class _SyImageWallState extends State<SyImageWall> {
   @override
   void initState() {
     super.initState();
-    images = widget.images ?? new List();
+    images = widget.images ?? [];
   }
 
   @override
@@ -59,7 +59,7 @@ class _SyImageWallState extends State<SyImageWall> {
       onLongPress: widget.reorderable
           ? () async {
               //排序
-              List<String> orderedImages = await Navigator.push(
+              List<String>? orderedImages = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
@@ -86,7 +86,7 @@ class _SyImageWallState extends State<SyImageWall> {
     for (int i = 0; i < images.length; i++) {
       widgets.add(_buildImageItem(i));
     }
-    if (widget.maxCount == null || images.length < widget.maxCount) {
+    if (widget.maxCount == null || images.length < widget.maxCount!) {
       widgets.add(_buildAddImageButton());
     }
     return widgets;
@@ -109,13 +109,13 @@ class _SyImageWallState extends State<SyImageWall> {
           child: InkWell(
             child: Icon(Icons.cancel, color: Theme.of(context).disabledColor),
             onTap: () {
-              String removedUrl;
+              String? removedUrl;
               setState(() {
                 removedUrl = images.removeAt(index);
               });
               widget.onChange(images);
               if (widget.onRemove != null) {
-                widget.onRemove(removedUrl);
+                widget.onRemove!(removedUrl);
               }
             },
           ),
@@ -138,8 +138,8 @@ class _SyImageWallState extends State<SyImageWall> {
     return InkWell(
       child: widget.uploadBtn ?? btn,
       onTap: () async {
-        String url = await widget.onUpload();
-        if (url == null || url.isEmpty) {
+        String? url = await widget.onUpload();
+        if (url.isEmpty) {
           return;
         }
         setState(() {
@@ -154,16 +154,16 @@ class _SyImageWallState extends State<SyImageWall> {
 //-----------
 
 class ReorderImage extends StatefulWidget {
-  final List<String> images;
+  final List<String>? images;
 
-  const ReorderImage({Key key, this.images}) : super(key: key);
+  const ReorderImage({Key? key, this.images}) : super(key: key);
 
   @override
   _ReorderImageState createState() => _ReorderImageState();
 }
 
 class _ReorderImageState extends State<ReorderImage> {
-  List<String> images;
+  List<String>? images;
 
   @override
   void initState() {
@@ -188,7 +188,7 @@ class _ReorderImageState extends State<ReorderImage> {
       body: ReorderableListView(
         padding: EdgeInsets.all(8.0),
         onReorder: _onReorder,
-        children: images.map((url) {
+        children: images!.map((url) {
           return Row(
             key: Key(url),
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -213,8 +213,8 @@ class _ReorderImageState extends State<ReorderImage> {
       if (newIndex > oldIndex) {
         newIndex -= 1;
       }
-      final String item = images.removeAt(oldIndex);
-      images.insert(newIndex, item);
+      final String item = images!.removeAt(oldIndex);
+      images!.insert(newIndex, item);
     });
   }
 }

@@ -9,10 +9,10 @@ class SyStepper extends StatefulWidget {
   final int max;
   final int step; //步幅
   final double size;
-  final StepperChangeCallback onChange;
+  final StepperChangeCallback? onChange;
 
   const SyStepper(
-      {Key key,
+      {Key? key,
       this.value = 1,
       this.onChange,
       this.min = 1,
@@ -26,7 +26,7 @@ class SyStepper extends StatefulWidget {
 }
 
 class _SyStepperState extends State<SyStepper> {
-  int value;
+  late int value;
 
   @override
   void initState() {
@@ -55,7 +55,7 @@ class _SyStepperState extends State<SyStepper> {
               size: widget.size,
               color: minusBtnDisabled
                   ? theme.disabledColor
-                  : theme.textTheme.button.color,
+                  : theme.textTheme.button!.color,
             ),
           ),
           onTap: minusBtnDisabled
@@ -65,7 +65,7 @@ class _SyStepperState extends State<SyStepper> {
                   setState(() {
                     value = newVal;
                   });
-                  widget.onChange(newVal);
+                  widget.onChange!(newVal);
                 },
         ),
         Padding(
@@ -83,7 +83,7 @@ class _SyStepperState extends State<SyStepper> {
               size: widget.size,
               color: addBtnDisabled
                   ? theme.disabledColor
-                  : theme.textTheme.button.color,
+                  : theme.textTheme.button!.color,
             ),
           ),
           onTap: addBtnDisabled
@@ -93,7 +93,7 @@ class _SyStepperState extends State<SyStepper> {
                   setState(() {
                     value = newVal;
                   });
-                  widget.onChange(newVal);
+                  widget.onChange!(newVal);
                 },
         ),
       ],

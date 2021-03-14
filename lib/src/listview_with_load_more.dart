@@ -10,18 +10,18 @@ import 'package:sy_flutter_widgets/src/utils.dart';
 //自带下拉刷新、上拉加载更多的 list view
 class SyListViewWithLoadMore extends StatefulWidget {
   final int itemCount;
-  final double itemExtent;
+  final double? itemExtent;
   final IndexedWidgetBuilder itemBuilder;
 
   final PullCallback onLoadMore;
-  final RefreshCallback onRefresh;
-  final ScrollPhysics physics;
+  final RefreshCallback? onRefresh;
+  final ScrollPhysics? physics;
 
   const SyListViewWithLoadMore(
-      {Key key,
-      @required this.itemCount,
-      @required this.onLoadMore,
-      @required this.itemBuilder,
+      {Key? key,
+      required this.itemCount,
+      required this.onLoadMore,
+      required this.itemBuilder,
       this.onRefresh,
       this.itemExtent,
       this.physics})
@@ -32,14 +32,14 @@ class SyListViewWithLoadMore extends StatefulWidget {
 }
 
 class _SyListViewWithLoadMoreState extends State<SyListViewWithLoadMore> {
-  ScrollController _scrollController;
+  ScrollController? _scrollController;
 
   bool _loadingMore = false;
   int _currentPage = 1;
   bool _hasMore = true;
 
   void _scrollListener() async {
-    double remainSpace = _scrollController.position.extentAfter;
+    double remainSpace = _scrollController!.position.extentAfter;
     if (remainSpace < 10.0) {
       if (!_loadingMore) {
         if (_hasMore) {
@@ -67,7 +67,7 @@ class _SyListViewWithLoadMoreState extends State<SyListViewWithLoadMore> {
       _currentPage = 1;
       _hasMore = true;
     });
-    widget.onRefresh();
+    widget.onRefresh!();
     return null;
   }
 
@@ -79,8 +79,8 @@ class _SyListViewWithLoadMoreState extends State<SyListViewWithLoadMore> {
 
   @override
   void dispose() {
-    _scrollController.removeListener(_scrollListener);
-    _scrollController.dispose();
+    _scrollController!.removeListener(_scrollListener);
+    _scrollController!.dispose();
     super.dispose();
   }
 

@@ -9,21 +9,21 @@ import 'package:sy_flutter_widgets/src/utils.dart';
 //自带下拉刷新、上拉加载更多的 grid view
 class SyGridViewWithLoadMore extends StatefulWidget {
   final int itemCount;
-  final double itemExtent;
+  final double? itemExtent;
   final IndexedWidgetBuilder itemBuilder;
   final SliverGridDelegate delegate;
 
   final PullCallback onLoadMore;
-  final RefreshCallback onRefresh;
+  final RefreshCallback? onRefresh;
 
   const SyGridViewWithLoadMore(
-      {Key key,
-      @required this.itemCount,
-      @required this.onLoadMore,
-      @required this.itemBuilder,
+      {Key? key,
+      required this.itemCount,
+      required this.onLoadMore,
+      required this.itemBuilder,
       this.onRefresh,
       this.itemExtent,
-      @required this.delegate})
+      required this.delegate})
       : super(key: key);
 
   @override
@@ -31,14 +31,14 @@ class SyGridViewWithLoadMore extends StatefulWidget {
 }
 
 class _SyGridViewWithLoadMoreState extends State<SyGridViewWithLoadMore> {
-  ScrollController _scrollController;
+  ScrollController? _scrollController;
 
   bool _loadingMore = false;
   int _currentPage = 1;
   bool _hasMore = true;
 
   void _scrollListener() async {
-    double remainSpace = _scrollController.position.extentAfter;
+    double remainSpace = _scrollController!.position.extentAfter;
     if (remainSpace < 10.0) {
       if (!_loadingMore) {
         if (_hasMore) {
@@ -66,7 +66,7 @@ class _SyGridViewWithLoadMoreState extends State<SyGridViewWithLoadMore> {
       _currentPage = 1;
       _hasMore = true;
     });
-    widget.onRefresh();
+    widget.onRefresh!();
     return null;
   }
 
@@ -78,8 +78,8 @@ class _SyGridViewWithLoadMoreState extends State<SyGridViewWithLoadMore> {
 
   @override
   void dispose() {
-    _scrollController.removeListener(_scrollListener);
-    _scrollController.dispose();
+    _scrollController!.removeListener(_scrollListener);
+    _scrollController!.dispose();
     super.dispose();
   }
 

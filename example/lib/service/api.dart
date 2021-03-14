@@ -8,7 +8,7 @@ import '../model/repo.dart';
 Future<List<GithubRepo>> getRepos(int page) async {
   final url =
       'https://api.github.com/search/repositories?q=go+language:go&sort=stars&order=desc&page=$page';
-  final res = await http.get(url);
+  final res = await http.get(Uri.parse(url));
   Map<String, dynamic> body = json.decode(res.body);
 
   return (body['items'] as List)

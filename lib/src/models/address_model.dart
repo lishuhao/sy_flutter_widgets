@@ -1,10 +1,10 @@
 class SyAddressModel {
-  String name;
-  String phone;
-  String province;
-  String city;
-  String county;
-  String detailAddress;
+  String? name;
+  String? phone;
+  String? province;
+  String? city;
+  String? county;
+  String? detailAddress;
   String areaCode;
   bool isDefault;
 
@@ -31,5 +31,5 @@ class SyAddressModel {
 
   String get area => '$province $city $county ';
 
-  String get completeAddress => area + ' ' + detailAddress;
+  String get completeAddress => area + ' ' + detailAddress!;
 }
